@@ -1,0 +1,30 @@
+spring:
+  application:
+    name: wallet-service
+
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://db:5432/wallet_db}
+    username: ${SPRING_DATASOURCE_USERNAME:wallet_user}
+    password: ${SPRING_DATASOURCE_PASSWORD:wallet_pass}
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: false
+
+  liquibase:
+    change-log: classpath:db/changelog/db.changelog-master.yaml
+
+server:
+  port: ${APP_PORT:8081}
+
+logging:
+  level:
+    liquibase: DEBUG
+
+app:
+  executor:
+    core-pool-size: 5
+    max-pool-size: 10
+    queue-capacity: 50
